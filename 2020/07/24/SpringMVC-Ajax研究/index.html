@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"luckytiger12138.github.io","root":"/","scheme":"Gemini","version":"8.0.0-rc.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"appID":"VIIWKV1DQV","apiKey":"663b81f0c4f431c284d987359afd93ab","indexName":"LUCKYTIGER12138","hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="简介 AJAX &#x3D; Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。  AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。  Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。  在 2005 年，Google 通过其 Google Suggest 使 AJAX 变得流行起">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringMVC Ajax">
+<meta property="og:url" content="https://luckytiger12138.github.io/2020/07/24/SpringMVC-Ajax%E7%A0%94%E7%A9%B6/index.html">
+<meta property="og:site_name" content="LuckyTiger">
+<meta property="og:description" content="简介 AJAX &#x3D; Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。  AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。  Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。  在 2005 年，Google 通过其 Google Suggest 使 AJAX 变得流行起">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-07-24T06:14:58.000Z">
+<meta property="article:modified_time" content="2020-07-25T02:24:42.130Z">
+<meta property="article:author" content="luckytiger12138">
+<meta property="article:tag" content="框架">
+<meta property="article:tag" content="SpringMVC">
+<meta property="article:tag" content="Ajax">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://luckytiger12138.github.io/2020/07/24/SpringMVC-Ajax%E7%A0%94%E7%A9%B6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>SpringMVC Ajax | LuckyTiger</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="LuckyTiger" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line toggle-line-first"></span>
+        <span class="toggle-line toggle-line-middle"></span>
+        <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">LuckyTiger</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-相册">
+
+    <a href="/photo/" rel="section"><i class="photo fa-fw"></i>相册</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://luckytiger12138.github.io/2020/07/24/SpringMVC-Ajax%E7%A0%94%E7%A9%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="luckytiger12138">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LuckyTiger">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpringMVC Ajax
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-07-24 14:14:58" itemprop="dateCreated datePublished" datetime="2020-07-24T14:14:58+08:00">2020-07-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-07-25 10:24:42" itemprop="dateModified" datetime="2020-07-25T10:24:42+08:00">2020-07-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">框架</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><ul>
+<li><p><strong>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）。</strong></p>
+</li>
+<li><p>AJAX 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。</p>
+</li>
+<li><p><strong>Ajax 不是一种新的编程语言，而是一种用于创建更好更快以及交互性更强的Web应用程序的技术。</strong></p>
+</li>
+<li><p>在 2005 年，Google 通过其 Google Suggest 使 AJAX 变得流行起来。Google Suggest能够自动帮你完成搜索单词。</p>
+</li>
+<li><p>Google Suggest 使用 AJAX 创造出动态性极强的 web 界面：当您在谷歌的搜索框输入关键字时，JavaScript 会把这些字符发送到服务器，然后服务器会返回一个搜索建议的列表。</p>
+</li>
+<li><p>就和国内百度的搜索框一样!</p>
+</li>
+<li><p>传统的网页(即不用ajax技术的网页)，想要更新内容或者提交一个表单，都需要重新加载整个网页。</p>
+</li>
+<li><p>使用ajax技术的网页，通过在后台服务器进行少量的数据交换，就可以实现异步局部更新。</p>
+</li>
+<li><p>使用Ajax，用户可以创建接近本地桌面应用的直接、高可用、更丰富、更动态的Web用户界面。</p>
+</li>
+</ul>
+<h1 id="伪造Ajax"><a href="#伪造Ajax" class="headerlink" title="伪造Ajax"></a>伪造Ajax</h1><p>我们可以使用前端的一个标签来伪造一个ajax的样子。iframe标签</p>
+<ol>
+<li><p>新建一个module ：sspringmvc-06-ajax ， 导入web支持！</p>
+</li>
+<li><p>编写一个 ajax-frame.html 使用 iframe 测试，感受下效果</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head lang=<span class="string">"en"</span>&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">"UTF-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;kuangshen&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script type=<span class="string">"text/javascript"</span>&gt;</span><br><span class="line">    window.onload = function()&#123;</span><br><span class="line">        <span class="keyword">var</span> myDate = <span class="keyword">new</span> Date();</span><br><span class="line">        document.getElementById(<span class="string">'currentTime'</span>).innerText = myDate.getTime();</span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">    <span class="function">function <span class="title">LoadPage</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">var</span> targetUrl =  document.getElementById(<span class="string">'url'</span>).value;</span><br><span class="line">        console.log(targetUrl);</span><br><span class="line">        document.getElementById(<span class="string">"iframePosition"</span>).src = targetUrl;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&lt;/script&gt;</span><br><span class="line"> </span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;请输入要加载的地址：&lt;span id="currentTime"&gt;&lt;/span&gt;&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;</span><br><span class="line">        &lt;input id=<span class="string">"url"</span> type=<span class="string">"text"</span> value=<span class="string">"https://www.baidu.com/"</span>/&gt;</span><br><span class="line">        &lt;input type=<span class="string">"button"</span> value=<span class="string">"提交"</span> onclick=<span class="string">"LoadPage()"</span>&gt;</span><br><span class="line">    &lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;h3&gt;加载页面位置：&lt;/h3&gt;</span><br><span class="line">    &lt;iframe id="iframePosition" style="width: 100%;height: 500px;"&gt;&lt;/iframe&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用IDEA开浏览器测试一下！</p>
+</li>
+</ol>
+<h1 id="利用AJAX可以做："><a href="#利用AJAX可以做：" class="headerlink" title="利用AJAX可以做："></a><strong>利用AJAX可以做：</strong></h1><ul>
+<li><p>注册时，输入用户名自动检测用户是否已经存在。</p>
+</li>
+<li><p>登陆时，提示用户名密码错误</p>
+</li>
+<li><p>删除数据行时，将行ID发送到后台，后台在数据库中删除，数据库删除成功后，在页面DOM中将数据行也删除。</p>
+</li>
+<li><p>….等等</p>
+</li>
+</ul>
+<h1 id="jQuery-ajax"><a href="#jQuery-ajax" class="headerlink" title="jQuery.ajax"></a>jQuery.ajax</h1><p>纯JS原生实现Ajax我们不去讲解这里，直接使用jquery提供的，方便学习和使用，避免重复造轮子，有兴趣的同学可以去了解下JS原生XMLHttpRequest ！</p>
+<p>Ajax的核心是XMLHttpRequest对象(XHR)。XHR为向服务器发送请求和解析服务器响应提供了接口。能够以异步方式从服务器获取新数据。</p>
+<p>jQuery 提供多个与 AJAX 有关的方法。</p>
+<p>通过 jQuery AJAX 方法，您能够使用 HTTP Get 和 HTTP Post 从远程服务器上请求文本、HTML、XML 或 JSON – 同时您能够把这些外部数据直接载入网页的被选元素中。</p>
+<p>jQuery 不是生产者，而是大自然搬运工。</p>
+<p>jQuery Ajax本质就是 XMLHttpRequest，对他进行了封装，方便调用！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">jQuery.ajax(...)</span><br><span class="line">       部分参数：</span><br><span class="line">              url：请求地址</span><br><span class="line">             type：请求方式，GET、POST（1.9.0之后用method）</span><br><span class="line">          headers：请求头</span><br><span class="line">             data：要发送的数据</span><br><span class="line">      contentType：即将发送信息至服务器的内容编码类型(默认: &quot;application&#x2F;x-www-form-urlencoded; charset&#x3D;UTF-8&quot;)</span><br><span class="line">            async：是否异步</span><br><span class="line">          timeout：设置请求超时时间（毫秒）</span><br><span class="line">       beforeSend：发送请求前执行的函数(全局)</span><br><span class="line">         complete：完成之后执行的回调函数(全局)</span><br><span class="line">          success：成功之后执行的回调函数(全局)</span><br><span class="line">            error：失败之后执行的回调函数(全局)</span><br><span class="line">          accepts：通过请求头发送给服务器，告诉服务器当前客户端可接受的数据类型</span><br><span class="line">         dataType：将服务器端返回的数据转换成指定类型</span><br><span class="line">            &quot;xml&quot;: 将服务器端返回的内容转换成xml格式</span><br><span class="line">           &quot;text&quot;: 将服务器端返回的内容转换成普通文本格式</span><br><span class="line">           &quot;html&quot;: 将服务器端返回的内容转换成普通文本格式，在插入DOM中时，如果包含JavaScript标签，则会尝试去执行。</span><br><span class="line">         &quot;script&quot;: 尝试将返回值当作JavaScript去执行，然后再将服务器端返回的内容转换成普通文本格式</span><br><span class="line">           &quot;json&quot;: 将服务器端返回的内容转换成相应的JavaScript对象</span><br><span class="line">          &quot;jsonp&quot;: JSONP 格式使用 JSONP 形式调用函数时，如 &quot;myurl?callback&#x3D;?&quot; jQuery 将自动替换 ? 为正确的函数名，以执行回调函数</span><br></pre></td></tr></table></figure>
+
+<p><strong>我们来个简单的测试，使用最原始的HttpServletResponse处理 , .最简单 , 最通用</strong></p>
+<ol>
+<li><p>配置web.xml 和 springmvc的配置文件，复制上面案例的即可 【记得静态资源过滤和注解驱动配置上】</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xmlns:mvc</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/beans</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/context</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/context/spring-context.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">        http://www.springframework.org/schema/mvc</span></span></span><br><span class="line"><span class="tag"><span class="string">        https://www.springframework.org/schema/mvc/spring-mvc.xsd"</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">&lt;!-- 自动扫描指定的包，下面所有注解类交给IOC容器管理 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hwua.controller"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:default-servlet-handler</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mvc:annotation-driven</span> /&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">&lt;!-- 视图解析器 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">"org.springframework.web.servlet.view.InternalResourceViewResolver"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">id</span>=<span class="string">"internalResourceViewResolver"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 前缀 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/jsp/"</span> /&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 后缀 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".jsp"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个AjaxController</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AjaxController</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/a1"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ajax1</span><span class="params">(String name , HttpServletResponse response)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"admin"</span>.equals(name))&#123;</span><br><span class="line">            response.getWriter().print(<span class="string">"true"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            response.getWriter().print(<span class="string">"false"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导入jquery ， 可以使用在线的CDN ， 也可以下载导入</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src="https://code.jquery.com/jquery-3.1.1.min.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;script src="$&#123;pageContext.request.contextPath&#125;/statics/js/jquery-3.1.1.min.js"&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写index.jsp测试</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;title&gt;$Title$&lt;/title&gt;</span><br><span class="line">    &lt;%--&lt;script src="https://code.jquery.com/jquery-3.1.1.min.js"&gt;&lt;/script&gt;--%&gt;</span><br><span class="line">    &lt;script src="$&#123;pageContext.request.contextPath&#125;/statics/js/jquery-3.1.1.min.js"&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line">        <span class="function">function <span class="title">a1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            $.post(&#123;</span><br><span class="line">                url:<span class="string">"$&#123;pageContext.request.contextPath&#125;/a1"</span>,</span><br><span class="line">                data:&#123;<span class="string">'name'</span>:$(<span class="string">"#txtName"</span>).val()&#125;,</span><br><span class="line">                success:function (data,status) &#123;</span><br><span class="line">                    alert(data);</span><br><span class="line">                    alert(status);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">  &lt;/head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;%--onblur：失去焦点触发事件--%&gt;</span><br><span class="line">  用户名:&lt;input type=<span class="string">"text"</span> id=<span class="string">"txtName"</span> onblur=<span class="string">"a1()"</span>/&gt;</span><br><span class="line"> </span><br><span class="line">  &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动tomcat测试！打开浏览器的控制台，当我们鼠标离开输入框的时候，可以看到发出了一个ajax的请求！是后台返回给我们的结果！测试成功！</p>
+</li>
+</ol>
+<h1 id="Springmvc实现"><a href="#Springmvc实现" class="headerlink" title="Springmvc实现"></a><strong>Springmvc实现</strong></h1><p>实体类user</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> String sex;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来获取一个集合对象，展示到前端页面</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/a2"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> List&lt;User&gt; <span class="title">ajax2</span><span class="params">()</span></span>&#123;</span><br><span class="line">    List&lt;User&gt; list = <span class="keyword">new</span> ArrayList&lt;User&gt;();</span><br><span class="line">    list.add(<span class="keyword">new</span> User(<span class="string">"张三1号"</span>,<span class="number">3</span>,<span class="string">"男"</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> User(<span class="string">"张三2号"</span>,<span class="number">3</span>,<span class="string">"男"</span>));</span><br><span class="line">    list.add(<span class="keyword">new</span> User(<span class="string">"张三3号"</span>,<span class="number">3</span>,<span class="string">"男"</span>));</span><br><span class="line">    <span class="keyword">return</span> list; <span class="comment">//由于@RestController注解，将list转成json格式返回</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前端页面</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;Title&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type=<span class="string">"button"</span> id=<span class="string">"btn"</span> value=<span class="string">"获取数据"</span>/&gt;</span><br><span class="line">&lt;table width=<span class="string">"80%"</span> align=<span class="string">"center"</span>&gt;</span><br><span class="line">    &lt;tr&gt;</span><br><span class="line">        &lt;td&gt;姓名&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;年龄&lt;/td&gt;</span><br><span class="line">        &lt;td&gt;性别&lt;/td&gt;</span><br><span class="line">    &lt;/tr&gt;</span><br><span class="line">    &lt;tbody id=<span class="string">"content"</span>&gt;</span><br><span class="line">    &lt;/tbody&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line"> </span><br><span class="line">&lt;script src="$&#123;pageContext.request.contextPath&#125;/statics/js/jquery-3.1.1.min.js"&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"> </span><br><span class="line">    $(function () &#123;</span><br><span class="line">        $(<span class="string">"#btn"</span>).click(function () &#123;</span><br><span class="line">            $.post(<span class="string">"$&#123;pageContext.request.contextPath&#125;/a2"</span>,function (data) &#123;</span><br><span class="line">                console.log(data)</span><br><span class="line">                <span class="keyword">var</span> html=<span class="string">""</span>;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;data.length ; i++) &#123;</span><br><span class="line">                    html+= <span class="string">"&lt;tr&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;td&gt;"</span> + data[i].name + <span class="string">"&lt;/td&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;td&gt;"</span> + data[i].age + <span class="string">"&lt;/td&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;td&gt;"</span> + data[i].sex + <span class="string">"&lt;/td&gt;"</span> +</span><br><span class="line">                        <span class="string">"&lt;/tr&gt;"</span></span><br><span class="line">                &#125;</span><br><span class="line">                $(<span class="string">"#content"</span>).html(html);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>成功实现了数据回显！可以体会一下Ajax的好处！</strong></p>
+<h1 id="注册提示效果"><a href="#注册提示效果" class="headerlink" title="注册提示效果"></a>注册提示效果</h1><p>我们再测试一个小Demo，思考一下我们平时注册时候，输入框后面的实时提示怎么做到的；如何优化</p>
+<p>我们写一个Controller</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/a3"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">ajax3</span><span class="params">(String name,String pwd)</span></span>&#123;</span><br><span class="line">    String msg = <span class="string">""</span>;</span><br><span class="line">    <span class="comment">//模拟数据库中存在数据</span></span><br><span class="line">    <span class="keyword">if</span> (name!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"admin"</span>.equals(name))&#123;</span><br><span class="line">            msg = <span class="string">"OK"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            msg = <span class="string">"用户名输入错误"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (pwd!=<span class="keyword">null</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"123456"</span>.equals(pwd))&#123;</span><br><span class="line">            msg = <span class="string">"OK"</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            msg = <span class="string">"密码输入有误"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> msg; <span class="comment">//由于@RestController注解，将msg转成json格式返回</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>前端页面 login.jsp</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;ajax&lt;/title&gt;</span><br><span class="line">    &lt;script src="$&#123;pageContext.request.contextPath&#125;/statics/js/jquery-3.1.1.min.js"&gt;&lt;/script&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line"> </span><br><span class="line">        <span class="function">function <span class="title">a1</span><span class="params">()</span></span>&#123;</span><br><span class="line">            $.post(&#123;</span><br><span class="line">                url:<span class="string">"$&#123;pageContext.request.contextPath&#125;/a3"</span>,</span><br><span class="line">                data:&#123;<span class="string">'name'</span>:$(<span class="string">"#name"</span>).val()&#125;,</span><br><span class="line">                success:function (data) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (data.toString()==<span class="string">'OK'</span>)&#123;</span><br><span class="line">                        $(<span class="string">"#userInfo"</span>).css(<span class="string">"color"</span>,<span class="string">"green"</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                        $(<span class="string">"#userInfo"</span>).css(<span class="string">"color"</span>,<span class="string">"red"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    $(<span class="string">"#userInfo"</span>).html(data);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">function <span class="title">a2</span><span class="params">()</span></span>&#123;</span><br><span class="line">            $.post(&#123;</span><br><span class="line">                url:<span class="string">"$&#123;pageContext.request.contextPath&#125;/a3"</span>,</span><br><span class="line">                data:&#123;<span class="string">'pwd'</span>:$(<span class="string">"#pwd"</span>).val()&#125;,</span><br><span class="line">                success:function (data) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (data.toString()==<span class="string">'OK'</span>)&#123;</span><br><span class="line">                        $(<span class="string">"#pwdInfo"</span>).css(<span class="string">"color"</span>,<span class="string">"green"</span>);</span><br><span class="line">                    &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                        $(<span class="string">"#pwdInfo"</span>).css(<span class="string">"color"</span>,<span class="string">"red"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    $(<span class="string">"#pwdInfo"</span>).html(data);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">    用户名:&lt;input type=<span class="string">"text"</span> id=<span class="string">"name"</span> onblur=<span class="string">"a1()"</span>/&gt;</span><br><span class="line">    &lt;span id="userInfo"&gt;&lt;/span&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;p&gt;</span><br><span class="line">    密码:&lt;input type=<span class="string">"text"</span> id=<span class="string">"pwd"</span> onblur=<span class="string">"a2()"</span>/&gt;</span><br><span class="line">    &lt;span id="pwdInfo"&gt;&lt;/span&gt;</span><br><span class="line">&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>【记得处理json乱码问题】</p>
+<h1 id="获取baidu接口Demo"><a href="#获取baidu接口Demo" class="headerlink" title="获取baidu接口Demo"></a>获取baidu接口Demo</h1><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE HTML&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html; charset=utf-8"</span>&gt;</span><br><span class="line">    &lt;title&gt;JSONP百度搜索&lt;/title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">        #q&#123;</span><br><span class="line">            width: <span class="number">500</span>px;</span><br><span class="line">            height: <span class="number">30</span>px;</span><br><span class="line">            border:1px solid #ddd;</span><br><span class="line">            line-height: <span class="number">30</span>px;</span><br><span class="line">            display: block;</span><br><span class="line">            margin: <span class="number">0</span> auto;</span><br><span class="line">            padding: <span class="number">0</span> <span class="number">10</span>px;</span><br><span class="line">            font-size: <span class="number">14</span>px;</span><br><span class="line">        &#125;</span><br><span class="line">        #ul&#123;</span><br><span class="line">            width: <span class="number">520</span>px;</span><br><span class="line">            list-style: none;</span><br><span class="line">            margin: <span class="number">0</span> auto;</span><br><span class="line">            padding: <span class="number">0</span>;</span><br><span class="line">            border:1px solid #ddd;</span><br><span class="line">            margin-top: -<span class="number">1</span>px;</span><br><span class="line">            display: none;</span><br><span class="line">        &#125;</span><br><span class="line">        #ul li&#123;</span><br><span class="line">            line-height: <span class="number">30</span>px;</span><br><span class="line">            padding: <span class="number">0</span> <span class="number">10</span>px;</span><br><span class="line">        &#125;</span><br><span class="line">        #ul li:hover&#123;</span><br><span class="line">            background-color: #f60;</span><br><span class="line">            color: #fff;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/style&gt;</span><br><span class="line">    &lt;script&gt;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 2.步骤二</span></span><br><span class="line">        <span class="comment">// 定义demo函数 (分析接口、数据)</span></span><br><span class="line">        <span class="function">function <span class="title">demo</span><span class="params">(data)</span></span>&#123;</span><br><span class="line">            <span class="keyword">var</span> Ul = document.getElementById(<span class="string">'ul'</span>);</span><br><span class="line">            <span class="keyword">var</span> html = <span class="string">''</span>;</span><br><span class="line">            <span class="comment">// 如果搜索数据存在 把内容添加进去</span></span><br><span class="line">            <span class="keyword">if</span> (data.s.length) &#123;</span><br><span class="line">                <span class="comment">// 隐藏掉的ul显示出来</span></span><br><span class="line">                Ul.style.display = <span class="string">'block'</span>;</span><br><span class="line">                <span class="comment">// 搜索到的数据循环追加到li里</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;data.s.length;i++)&#123;</span><br><span class="line">                    html += <span class="string">'&lt;li&gt;'</span>+data.s[i]+<span class="string">'&lt;/li&gt;'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="comment">// 循环的li写入ul</span></span><br><span class="line">                Ul.innerHTML = html;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        <span class="comment">// 1.步骤一</span></span><br><span class="line">        window.onload = function()&#123;</span><br><span class="line">            <span class="comment">// 获取输入框和ul</span></span><br><span class="line">            <span class="keyword">var</span> Q = document.getElementById(<span class="string">'q'</span>);</span><br><span class="line">            <span class="keyword">var</span> Ul = document.getElementById(<span class="string">'ul'</span>);</span><br><span class="line"> </span><br><span class="line">            <span class="comment">// 事件鼠标抬起时候</span></span><br><span class="line">            Q.onkeyup = function()&#123;</span><br><span class="line">                <span class="comment">// 如果输入框不等于空</span></span><br><span class="line">                <span class="keyword">if</span> (<span class="keyword">this</span>.value != <span class="string">''</span>) &#123;</span><br><span class="line">                    <span class="comment">// ☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆JSONPz重点☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆☆</span></span><br><span class="line">                    <span class="comment">// 创建标签</span></span><br><span class="line">                    <span class="keyword">var</span> script = document.createElement(<span class="string">'script'</span>);</span><br><span class="line">                    <span class="comment">//给定要跨域的地址 赋值给src</span></span><br><span class="line">                    <span class="comment">//这里是要请求的跨域的地址 我写的是百度搜索的跨域地址</span></span><br><span class="line">                    script.src = <span class="string">'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='</span>+<span class="keyword">this</span>.value+<span class="string">'&amp;cb=demo'</span>;</span><br><span class="line">                    <span class="comment">// 将组合好的带src的script标签追加到body里</span></span><br><span class="line">                    document.body.appendChild(script);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &lt;/script&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"> </span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;input type=<span class="string">"text"</span> id=<span class="string">"q"</span> /&gt;</span><br><span class="line">&lt;ul id=<span class="string">"ul"</span>&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%A1%86%E6%9E%B6/" rel="tag"># 框架</a>
+              <a href="/tags/SpringMVC/" rel="tag"># SpringMVC</a>
+              <a href="/tags/Ajax/" rel="tag"># Ajax</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/13/SpringMVC-%E6%95%B4%E5%90%88SSM%E6%A1%86%E6%9E%B6/" rel="prev" title="SpringMVC 整合SSM框架">
+      <i class="fa fa-chevron-left"></i> SpringMVC 整合SSM框架
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/07/24/SpringMVC-%E6%8B%A6%E6%88%AA%E5%99%A8-%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E4%B8%8B%E8%BD%BD/" rel="next" title="SpringMVC 拦截器-文件上传">
+      SpringMVC 拦截器-文件上传 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BC%AA%E9%80%A0Ajax"><span class="nav-number">2.</span> <span class="nav-text">伪造Ajax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%A9%E7%94%A8AJAX%E5%8F%AF%E4%BB%A5%E5%81%9A%EF%BC%9A"><span class="nav-number">3.</span> <span class="nav-text">利用AJAX可以做：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-ajax"><span class="nav-number">4.</span> <span class="nav-text">jQuery.ajax</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Springmvc%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.</span> <span class="nav-text">Springmvc实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%A8%E5%86%8C%E6%8F%90%E7%A4%BA%E6%95%88%E6%9E%9C"><span class="nav-number">6.</span> <span class="nav-text">注册提示效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96baidu%E6%8E%A5%E5%8F%A3Demo"><span class="nav-number">7.</span> <span class="nav-text">获取baidu接口Demo</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">luckytiger12138</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="http://www.youdao.com/w/eng/peach/#keyfrom=dict2.index" title="QQ → http:&#x2F;&#x2F;www.youdao.com&#x2F;w&#x2F;eng&#x2F;peach&#x2F;#keyfrom&#x3D;dict2.index" rel="noopener" target="_blank"><i class="fab fa-qq fa-fw"></i>QQ</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yourname@gmail.com" title="E-Mail → mailto:yourname@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">luckytiger12138</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
