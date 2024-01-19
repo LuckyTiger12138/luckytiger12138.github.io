@@ -1,0 +1,736 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>Springboot-15 富文本编辑器 | LuckyTiger</title><meta name="keywords" content="框架,springboot,web,文本编辑器"><meta name="author" content="LuckyTiger"><meta name="copyright" content="LuckyTiger"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Springboot-15 富文本编辑器"><meta name="application-name" content="Springboot-15 富文本编辑器"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="Springboot-15 富文本编辑器"><meta property="og:url" content="http://luckytiger12138.github.io/2020/08/07/Springboot-15-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/index.html"><meta property="og:site_name" content="LuckyTiger"><meta property="og:description" content="市面上有许多非常成熟的富文本编辑器，比如：  **Editor.md **——功能非常丰富的编辑器，左端编辑，右端预览，非常方便，完全免费   官网：https:&amp;#x2F;&amp;#x2F;pandao.github.io&amp;#x2F;editor.md&amp;#x2F;   **wangEditor **——基于javascript和css开发的"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341305.png"><meta property="article:author" content="LuckyTiger"><meta property="article:tag" content="LuckyTiger"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341305.png"><meta name="description" content="市面上有许多非常成熟的富文本编辑器，比如：  **Editor.md **——功能非常丰富的编辑器，左端编辑，右端预览，非常方便，完全免费   官网：https:&amp;#x2F;&amp;#x2F;pandao.github.io&amp;#x2F;editor.md&amp;#x2F;   **wangEditor **——基于javascript和css开发的"><link rel="shortcut icon" href="/favicon.ico"><link rel="canonical" href="http://luckytiger12138.github.io/2020/08/07/Springboot-15-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/"><link rel="preconnect" href="//cdn.cbd.int"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: undefined,
+  peoplecanvas: undefined,
+  postHeadAiDescription: {"enable":true,"gptName":"AnZhiYu","mode":"local","switchBtn":false,"btnLink":"https://afdian.net/item/886a79d4db6711eda42a52540025c377","randomNum":3,"basicWordCount":1000,"key":"xxxx","Referer":"https://xx.xx/"},
+  diytitle: {"enable":true,"leaveTitle":"w(ﾟДﾟ)w 不要走！再看看嘛！","backTitle":"♪(^∇^*)欢迎肥来！"},
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 宝贝","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: '',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: {"apiurl":"https://friends.anheyu.com/"},
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":null},
+  algolia: {"appId":"VIIWKV1DQV","apiKey":"7af4a9552e0bd9846a39c821c6bf376c","indexName":"LuckyTiger12138","hits":{"per_page":6},"languages":{"input_placeholder":"输入关键词后按下回车查找","hits_empty":"找不到您查询的内容：${query}","hits_stats":"找到 ${hits} 条结果，用时 ${time} 毫秒"}},
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":false,"limitCount":50,"languages":{"author":"作者: LuckyTiger","link":"链接: ","source":"来源: LuckyTiger","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: 'LuckyTiger',
+  title: 'Springboot-15 富文本编辑器',
+  postAI: '',
+  pageFillDescription: 'Editor.md, 基础工程搭建, 数据库设计, 基础项目搭建, 文章编辑整合（重点）, 图片上传问题, 表情包问题, 文章展示市面上有许多非常成熟的富文本编辑器比如功能非常丰富的编辑器左端编辑右端预览非常方便完全免费官网基于和开发的富文本编辑器轻量简洁界面美观易用开源免费官网是一个轻量级的基于浏览器的所见即所得编辑器由写成它对和都有着非常良好的支持功能齐全界面美观就是文档是英文的对开发人员英文水平有一定要求官网博客园百度是由百度前端研发部开发所见即所得富文本编辑器具有轻量功能齐全可定制注重用户体验等特点开源基于协议允许自由使用和修改代码缺点是已经没有更新了官网界面经典官网是一款极简但功能强大的在线文本编辑器支持桌面设备和移动设备主要功能包含内置的图像处理和存储文件拖放拼写检查和自动更正此外该工具还实现了屏幕阅读器等辅助技术并符合可访问性标准官网国外的界面美观官网功能强大还可以编辑公式等官网界面美观功能较全官网好看精美官网功能齐全官网界面非常好看功能非常强大非常好用非免费官网总之目前可用的富文本编辑器有很多这只是其中的一部分我这里使用的就是作为一个资深码农必然是我们程序猿最喜欢的格式看下面就爱上了我们可以在官网下载它得到它的压缩包解压以后在目录下面可以看到他的很多案例使用学习其实就是看人家怎么写的然后进行模仿就好了我们可以将整个解压的文件倒入我们的项目将一些无用的测试和案例删掉即可基础工程搭建数据库设计文章表字段备注文章的唯一作者标题文章的内容建表文章的唯一作者标题文章的内容基础项目搭建建一个项目配置解决时区的报错实体类文章类文章的唯一作者名标题文章的内容接口查询所有的文章新增一个文章根据文章查询文章根据文章删除文章既然已经提供了的映射配置文件自然要告诉这些文件的位置文章编辑整合重点导入资源删除多余文件编辑文章页面需要引入秦疆博客表单标题作者保存到工具栏主题预览主题编辑主题开启科学公式语言支持默认关闭开启流程图支持默认关闭开启时序序列图支持默认关闭图片上传指定需要显示的功能按钮自定义功能按钮下面我自定义了个一个是发布一个是返回首页发布返回首页给自定义按钮指定回调函数表单提交提交至服务器的路径编写进行跳转以及保存文章图片上传问题前端中添加配置图片上传这个是上传图片时的访问地址后端请求接收保存这个图片需要导入的依赖博客图片上传问题上传路径保存设置获得当前项目的路径按照月份进行分类月上传文件地址上传文件保存地址解决文件名字问题我们使用通过的方法直接写文件注意这个时候给进行回调解决文件回显显示的问题设置虚拟目录映射在我们自己拓展的中进行配置即可文件保存在真实目录下访问的时候使用虚路径比如文件名为就直接就了表情包问题自己手动下载表情包放到图片路径下修改文件文章展示中增加方法编写页面文章头部信息标题作者最后更新日期导航作者文章主体内容注意这里是上面的默认不解析默认不解析默认不解析重启项目访问进行测试大功告成',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-11-10 23:57:53',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="/touxiang.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://luckytiger12138.github.io/HomePageLusion.github.io/" title="个人中心"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="个人中心"/><span class="back-menu-item-text">个人中心</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" href="https://luckytiger12138.github.io/HomePageLusion.github.io/" title="个人中心"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="个人中心"/><span class="back-menu-item-text">个人中心</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://gpt.luckytiger12138.top" title="Chatgpt"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101640793.png" alt="Chatgpt"/><span class="back-menu-item-text">Chatgpt</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">LuckyTiger</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button only-home" id="travellings_button" title="随机前往一个开往项目网站"><a class="site-page" onclick="anzhiyu.totraveling()" title="随机前往一个开往项目网站" href="javascript:void(0);" rel="external nofollow" data-pjax-state="external"><i class="anzhiyufont anzhiyu-icon-train"></i></a></div><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="微信" src="/null"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" alt="支付宝" src="/null"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AOP/" style="font-size: 1.05rem;">AOP<sup>1</sup></a><a href="/tags/Ajax/" style="font-size: 1.05rem;">Ajax<sup>1</sup></a><a href="/tags/DI/" style="font-size: 1.05rem;">DI<sup>1</sup></a><a href="/tags/Echarts/" style="font-size: 1.05rem;">Echarts<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 1.05rem;">JDBC<sup>1</sup></a><a href="/tags/JSON/" style="font-size: 1.05rem;">JSON<sup>1</sup></a><a href="/tags/Java/" style="font-size: 1.05rem;">Java<sup>1</sup></a><a href="/tags/JavaWeb/" style="font-size: 1.05rem;">JavaWeb<sup>1</sup></a><a href="/tags/MyBatis/" style="font-size: 1.05rem;">MyBatis<sup>10</sup></a><a href="/tags/MySQL/" style="font-size: 1.05rem;">MySQL<sup>4</sup></a><a href="/tags/MybatisPlus/" style="font-size: 1.05rem;">MybatisPlus<sup>1</sup></a><a href="/tags/Ngrok/" style="font-size: 1.05rem;">Ngrok<sup>1</sup></a><a href="/tags/RestFul/" style="font-size: 1.05rem;">RestFul<sup>1</sup></a><a href="/tags/Spring/" style="font-size: 1.05rem;">Spring<sup>8</sup></a><a href="/tags/SpringMVC/" style="font-size: 1.05rem;">SpringMVC<sup>9</sup></a><a href="/tags/Tree/" style="font-size: 1.05rem;">Tree<sup>1</sup></a><a href="/tags/c3p0/" style="font-size: 1.05rem;">c3p0<sup>1</sup></a><a href="/tags/dbcp/" style="font-size: 1.05rem;">dbcp<sup>1</sup></a><a href="/tags/idea/" style="font-size: 1.05rem;">idea<sup>1</sup></a><a href="/tags/%E4%B8%80%E5%AF%B9%E5%A4%9A/" style="font-size: 1.05rem;">一对多<sup>1</sup></a><a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 1.05rem;">事务<sup>1</sup></a><a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 1.05rem;">优化<sup>1</sup></a><a href="/tags/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.05rem;">关系型数据库<sup>3</sup></a><a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 1.05rem;">内网穿透<sup>1</sup></a><a href="/tags/%E5%88%86%E9%A1%B5/" style="font-size: 1.05rem;">分页<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 1.05rem;">前端<sup>2</sup></a><a href="/tags/%E5%8A%A8%E6%80%81SQL/" style="font-size: 1.05rem;">动态SQL<sup>1</sup></a><a href="/tags/%E5%A4%9A%E5%AF%B9%E4%B8%80/" style="font-size: 1.05rem;">多对一<sup>1</sup></a><a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 1.05rem;">容器<sup>5</sup></a><a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 1.05rem;">并发<sup>1</sup></a><a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/" style="font-size: 1.05rem;">拦截器<sup>1</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.05rem;">数据库<sup>18</sup></a><a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 1.05rem;">文件上传<sup>1</sup></a><a href="/tags/%E6%98%A0%E5%B0%84/" style="font-size: 1.05rem;">映射<sup>1</sup></a><a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 1.05rem;">框架<sup>42</sup></a><a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 1.05rem;">注解<sup>2</sup></a><a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 1.05rem;">缓存<sup>1</sup></a><a href="/tags/%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/" style="font-size: 1.05rem;">解决问题<sup>1</sup></a><a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 1.05rem;">递归<sup>1</sup></a><a href="/tags/%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/" style="font-size: 1.05rem;">面向切面编程<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/08/"><span class="card-archive-list-date">八月 2021</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2021/03/"><span class="card-archive-list-date">三月 2021</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/08/"><span class="card-archive-list-date">八月 2020</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">18</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/07/"><span class="card-archive-list-date">七月 2020</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">23</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2020/06/"><span class="card-archive-list-date">六月 2020</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">6</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url">框架</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/%E6%A1%86%E6%9E%B6/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>框架</span></a><a class="article-meta__tags" href="/tags/springboot/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>springboot</span></a><a class="article-meta__tags" href="/tags/web/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>web</span></a><a class="article-meta__tags" href="/tags/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>文本编辑器</span></a></span></div></div><h1 class="post-title" itemprop="name headline">Springboot-15 富文本编辑器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2020-08-07T02:47:47.000Z" title="发表于 2020-08-07 10:47:47">2020-08-07</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2023-11-10T15:57:53.888Z" title="更新于 2023-11-10 23:57:53">2023-11-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">2.9k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>14分钟</span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为济南"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>济南</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101346217.webp"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="http://luckytiger12138.github.io/2020/08/07/Springboot-15-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/"><header><a class="post-meta-categories" href="/categories/%E6%A1%86%E6%9E%B6/" itemprop="url">框架</a><a href="/tags/%E6%A1%86%E6%9E%B6/" tabindex="-1" itemprop="url">框架</a><a href="/tags/springboot/" tabindex="-1" itemprop="url">springboot</a><a href="/tags/web/" tabindex="-1" itemprop="url">web</a><a href="/tags/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/" tabindex="-1" itemprop="url">文本编辑器</a><h1 id="CrawlerTitle" itemprop="name headline">Springboot-15 富文本编辑器</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">LuckyTiger</span><time itemprop="dateCreated datePublished" datetime="2020-08-07T02:47:47.000Z" title="发表于 2020-08-07 10:47:47">2020-08-07</time><time itemprop="dateCreated datePublished" datetime="2023-11-10T15:57:53.888Z" title="更新于 2023-11-10 23:57:53">2023-11-10</time></header><p>市面上有许多非常成熟的富文本编辑器，比如：</p>
+<ul>
+<li><p>**Editor.md **——功能非常丰富的编辑器，左端编辑，右端预览，非常方便，完全免费</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://pandao.github.io/editor.md/">https://pandao.github.io/editor.md/</a></li>
+</ul>
+</li>
+<li><p>**wangEditor **——基于javascript和css开发的 Web富文本编辑器， 轻量、简洁、界面美观、易用、开源免费。</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="http://www.wangeditor.com/">http://www.wangeditor.com/</a></li>
+</ul>
+</li>
+<li><p>**TinyMCE **——TinyMCE是一个轻量级的基于浏览器的所见即所得编辑器，由JavaScript写成。它对IE6+和Firefox1.5+都有着非常良好的支持。功能齐全，界面美观，就是文档是英文的，对开发人员英文水平有一定要求。</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://www.tiny.cloud/docs/demo/full-featured/">https://www.tiny.cloud/docs/demo/full-featured/</a></li>
+</ul>
+</li>
+<li><ul>
+<li>博客园</li>
+</ul>
+</li>
+<li><p>**百度ueditor **——UEditor是由百度web前端研发部开发所见即所得富文本web编辑器，具有轻量，功能齐全，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码，缺点是已经没有更新了</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://ueditor.baidu.com/website/onlinedemo.html">https://ueditor.baidu.com/website/onlinedemo.html</a></li>
+</ul>
+</li>
+<li><p>**kindeditor **——界面经典。</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="http://kindeditor.net/demo.php">http://kindeditor.net/demo.php</a></li>
+</ul>
+</li>
+<li><p>**Textbox **——Textbox是一款极简但功能强大的在线文本编辑器，支持桌面设备和移动设备。主要功能包含内置的图像处理和存储、文件拖放、拼写检查和自动更正。此外，该工具还实现了屏幕阅读器等辅助技术，并符合WAI-ARIA可访问性标准。</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://textbox.io/">https://textbox.io/</a></li>
+</ul>
+</li>
+<li><p>**CKEditor **——国外的，界面美观。</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://ckeditor.com/ckeditor-5/demo/">https://ckeditor.com/ckeditor-5/demo/</a></li>
+</ul>
+</li>
+<li><p>**quill **——功能强大，还可以编辑公式等</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://quilljs.com/">https://quilljs.com/</a></li>
+</ul>
+</li>
+<li><p>**simditor **——界面美观，功能较全。</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://simditor.tower.im/">https://simditor.tower.im/</a></li>
+</ul>
+</li>
+<li><p>**ummernote **——UI好看，精美</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://summernote.org/">https://summernote.org/</a></li>
+</ul>
+</li>
+<li><p>**jodit **——功能齐全</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://xdsoft.net/jodit/">https://xdsoft.net/jodit/</a></li>
+</ul>
+</li>
+<li><p>**froala Editor **——界面非常好看，功能非常强大，非常好用（非免费）</p>
+</li>
+<li><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://www.froala.com/wysiwyg-editor">https://www.froala.com/wysiwyg-editor</a></li>
+</ul>
+</li>
+</ul>
+<p>总之，目前可用的富文本编辑器有很多……这只是其中的一部分</p>
+<h1 id="Editor-md"><a href="#Editor-md" class="headerlink" title="Editor.md"></a>Editor.md</h1><p>我这里使用的就是Editor.md，作为一个资深码农，Mardown必然是我们程序猿最喜欢的格式，看下面，就爱上了！</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images/img/20200807131521.jpg" alt="1"></p>
+<p>我们可以在官网下载它：<a target="_blank" rel="noopener" href="https://pandao.github.io/editor.md/">https://pandao.github.io/editor.md/</a> ， 得到它的压缩包！</p>
+<p>解压以后，在examples目录下面，可以看到他的很多案例使用！学习，其实就是看人家怎么写的，然后进行模仿就好了！</p>
+<p>我们可以将整个解压的文件倒入我们的项目，将一些无用的测试和案例删掉即可！</p>
+<h1 id="基础工程搭建"><a href="#基础工程搭建" class="headerlink" title="基础工程搭建"></a>基础工程搭建</h1><h2 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h2><p>article：文章表</p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left"></th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">id</td>
+<td align="left">int</td>
+<td align="left">文章的唯一ID</td>
+</tr>
+<tr>
+<td align="left">author</td>
+<td align="left">varchar</td>
+<td align="left">作者</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left">varchar</td>
+<td align="left">标题</td>
+</tr>
+<tr>
+<td align="left">content</td>
+<td align="left">longtext</td>
+<td align="left">文章的内容</td>
+</tr>
+</tbody></table>
+<p>建表SQL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `article` (</span><br><span class="line">  `id` <span class="type">int</span>(<span class="number">10</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT COMMENT <span class="string">&#x27;int文章的唯一ID&#x27;</span>,</span><br><span class="line">  `author` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;作者&#x27;</span>,</span><br><span class="line">  `title` <span class="type">varchar</span>(<span class="number">100</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;标题&#x27;</span>,</span><br><span class="line">  `content` longtext <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;文章的内容&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`)</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8</span><br></pre></td></tr></table></figure>
+
+<h2 id="基础项目搭建"><a href="#基础项目搭建" class="headerlink" title="基础项目搭建"></a>基础项目搭建</h2><ol>
+<li><p>建一个SpringBoot项目配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">username:</span> <span class="string">root</span></span><br><span class="line">    <span class="attr">password:</span> <span class="number">123456</span></span><br><span class="line">    <span class="comment">#?serverTimezone=UTC解决时区的报错</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">jdbc:mysql://localhost:3306/springboot?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8</span></span><br><span class="line">    <span class="attr">driver-class-name:</span> <span class="string">com.mysql.cj.jdbc.Driver</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">resource</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">directory</span>&gt;</span>src/main/java<span class="tag">&lt;/<span class="name">directory</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">includes</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">include</span>&gt;</span>**/*.xml<span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">includes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filtering</span>&gt;</span>true<span class="tag">&lt;/<span class="name">filtering</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">resource</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实体类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//文章类</span></span><br><span class="line"><span class="meta">@Data</span></span><br><span class="line"><span class="meta">@NoArgsConstructor</span></span><br><span class="line"><span class="meta">@AllArgsConstructor</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Article</span> <span class="keyword">implements</span> <span class="title class_">Serializable</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> id; <span class="comment">//文章的唯一ID</span></span><br><span class="line">    <span class="keyword">private</span> String author; <span class="comment">//作者名</span></span><br><span class="line">    <span class="keyword">private</span> String title; <span class="comment">//标题</span></span><br><span class="line">    <span class="keyword">private</span> String content; <span class="comment">//文章的内容</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mapper接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">ArticleMapper</span> &#123;</span><br><span class="line">    <span class="comment">//查询所有的文章</span></span><br><span class="line">    List&lt;Article&gt; <span class="title function_">queryArticles</span><span class="params">()</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//新增一个文章</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">addArticle</span><span class="params">(Article article)</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//根据文章id查询文章</span></span><br><span class="line">    Article <span class="title function_">getArticleById</span><span class="params">(<span class="type">int</span> id)</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//根据文章id删除文章</span></span><br><span class="line">    <span class="type">int</span> <span class="title function_">deleteArticleById</span><span class="params">(<span class="type">int</span> id)</span>;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span></span><br><span class="line">        <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span>&gt;</span><br><span class="line"> </span><br><span class="line">&lt;mapper namespace=<span class="string">&quot;com.luckytiger.mapper.ArticleMapper&quot;</span>&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;select id=<span class="string">&quot;queryArticles&quot;</span> resultType=<span class="string">&quot;Article&quot;</span>&gt;</span><br><span class="line">       select * from article</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;select id=<span class="string">&quot;getArticleById&quot;</span> resultType=<span class="string">&quot;Article&quot;</span>&gt;</span><br><span class="line">       select * from article <span class="type">where</span> <span class="variable">id</span> <span class="operator">=</span> #&#123;id&#125;</span><br><span class="line">    &lt;/select&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;insert id=<span class="string">&quot;addArticle&quot;</span> parameterType=<span class="string">&quot;Article&quot;</span>&gt;</span><br><span class="line">        insert into <span class="title function_">article</span> <span class="params">(author,title,content)</span> values (#&#123;author&#125;,#&#123;title&#125;,#&#123;content&#125;);</span><br><span class="line">    &lt;/insert&gt;</span><br><span class="line">    </span><br><span class="line">    &lt;delete id=<span class="string">&quot;deleteArticleById&quot;</span> parameterType=<span class="string">&quot;int&quot;</span>&gt;</span><br><span class="line">        delete from article <span class="type">where</span> <span class="variable">id</span> <span class="operator">=</span> #&#123;id&#125;</span><br><span class="line">    &lt;/delete&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/mapper&gt;</span><br></pre></td></tr></table></figure>
+
+<p>既然已经提供了 myBatis 的映射配置文件，自然要告诉 spring boot 这些文件的位置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">mybatis:</span></span><br><span class="line">  <span class="attr">mapper-locations:</span> <span class="string">classpath:com/luckytiger/mapper/*.xml</span></span><br><span class="line">  <span class="attr">type-aliases-package:</span> <span class="string">com.luckytiger.pojo</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="文章编辑整合（重点）"><a href="#文章编辑整合（重点）" class="headerlink" title="文章编辑整合（重点）"></a>文章编辑整合（重点）</h1><ol>
+<li><p>导入 editor.md 资源 ，删除多余文件</p>
+</li>
+<li><p>编辑文章页面 editor.html、需要引入 jQuery；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">class</span>=<span class="string">&quot;x-admin-sm&quot;</span> <span class="attr">lang</span>=<span class="string">&quot;zh&quot;</span> <span class="attr">xmlns:th</span>=<span class="string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>秦疆&#x27;Blog<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;renderer&quot;</span> <span class="attr">content</span>=<span class="string">&quot;webkit&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">&quot;X-UA-Compatible&quot;</span> <span class="attr">content</span>=<span class="string">&quot;IE=edge,chrome=1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi&quot;</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--Editor.md--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/editormd/css/editormd.css&#125;&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;shortcut icon&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://pandao.github.io/editor.md/favicon.ico&quot;</span> <span class="attr">type</span>=<span class="string">&quot;image/x-icon&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-fluid&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-row layui-col-space15&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;layui-col-md12&quot;</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!--博客表单--&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">form</span> <span class="attr">name</span>=<span class="string">&quot;mdEditorForm&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                    标题：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;title&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">                   作者：<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">name</span>=<span class="string">&quot;author&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;article-content&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">name</span>=<span class="string">&quot;content&quot;</span> <span class="attr">id</span>=<span class="string">&quot;content&quot;</span> <span class="attr">style</span>=<span class="string">&quot;display:none;&quot;</span>&gt;</span> <span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--editormd--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/jquery.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/editormd.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> testEditor;</span></span><br><span class="line"><span class="language-javascript">    <span class="comment">//window.onload = function()&#123; &#125;</span></span></span><br><span class="line"><span class="language-javascript">    $(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        testEditor = <span class="title function_">editormd</span>(<span class="string">&quot;article-content&quot;</span>, &#123;</span></span><br><span class="line"><span class="language-javascript">            width : <span class="string">&quot;95%&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            height : <span class="number">400</span>,</span></span><br><span class="line"><span class="language-javascript">            syncScrolling : <span class="string">&quot;single&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            path : <span class="string">&quot;../editormd/lib/&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            saveHTMLToTextarea : <span class="literal">true</span>,    <span class="comment">// 保存 HTML 到 Textarea</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">emoji</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">theme</span>: <span class="string">&quot;dark&quot;</span>,<span class="comment">//工具栏主题</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">previewTheme</span>: <span class="string">&quot;dark&quot;</span>,<span class="comment">//预览主题</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">editorTheme</span>: <span class="string">&quot;pastel-on-dark&quot;</span>,<span class="comment">//编辑主题</span></span></span><br><span class="line"><span class="language-javascript">            tex : <span class="literal">true</span>,                   <span class="comment">// 开启科学公式TeX语言支持，默认关闭</span></span></span><br><span class="line"><span class="language-javascript">            flowChart : <span class="literal">true</span>,             <span class="comment">// 开启流程图支持，默认关闭</span></span></span><br><span class="line"><span class="language-javascript">            sequenceDiagram : <span class="literal">true</span>,       <span class="comment">// 开启时序/序列图支持，默认关闭,</span></span></span><br><span class="line"><span class="language-javascript">            <span class="comment">//图片上传</span></span></span><br><span class="line"><span class="language-javascript">            imageUpload : <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">            imageFormats : [<span class="string">&quot;jpg&quot;</span>, <span class="string">&quot;jpeg&quot;</span>, <span class="string">&quot;gif&quot;</span>, <span class="string">&quot;png&quot;</span>, <span class="string">&quot;bmp&quot;</span>, <span class="string">&quot;webp&quot;</span>],</span></span><br><span class="line"><span class="language-javascript">            imageUploadURL : <span class="string">&quot;/article/file/upload&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            onload : <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;onload&#x27;</span>, <span class="variable language_">this</span>);</span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">/*指定需要显示的功能按钮*/</span></span></span><br><span class="line"><span class="language-javascript">            toolbarIcons : <span class="keyword">function</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                <span class="keyword">return</span> [<span class="string">&quot;undo&quot;</span>,<span class="string">&quot;redo&quot;</span>,<span class="string">&quot;|&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="string">&quot;bold&quot;</span>,<span class="string">&quot;del&quot;</span>,<span class="string">&quot;italic&quot;</span>,<span class="string">&quot;quote&quot;</span>,<span class="string">&quot;ucwords&quot;</span>,<span class="string">&quot;uppercase&quot;</span>,<span class="string">&quot;lowercase&quot;</span>,<span class="string">&quot;|&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="string">&quot;h1&quot;</span>,<span class="string">&quot;h2&quot;</span>,<span class="string">&quot;h3&quot;</span>,<span class="string">&quot;h4&quot;</span>,<span class="string">&quot;h5&quot;</span>,<span class="string">&quot;h6&quot;</span>,<span class="string">&quot;|&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="string">&quot;list-ul&quot;</span>,<span class="string">&quot;list-ol&quot;</span>,<span class="string">&quot;hr&quot;</span>,<span class="string">&quot;|&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="string">&quot;link&quot;</span>,<span class="string">&quot;reference-link&quot;</span>,<span class="string">&quot;image&quot;</span>,<span class="string">&quot;code&quot;</span>,<span class="string">&quot;preformatted-text&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="string">&quot;code-block&quot;</span>,<span class="string">&quot;table&quot;</span>,<span class="string">&quot;datetime&quot;</span>,<span class="string">&quot;emoji&quot;</span>,<span class="string">&quot;html-entities&quot;</span>,<span class="string">&quot;pagebreak&quot;</span>,<span class="string">&quot;|&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="string">&quot;goto-line&quot;</span>,<span class="string">&quot;watch&quot;</span>,<span class="string">&quot;preview&quot;</span>,<span class="string">&quot;fullscreen&quot;</span>,<span class="string">&quot;clear&quot;</span>,<span class="string">&quot;search&quot;</span>,<span class="string">&quot;|&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                    <span class="string">&quot;help&quot;</span>,<span class="string">&quot;info&quot;</span>,<span class="string">&quot;releaseIcon&quot;</span>, <span class="string">&quot;index&quot;</span>]</span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript">            <span class="comment">/*自定义功能按钮，下面我自定义了2个，一个是发布，一个是返回首页*/</span></span></span><br><span class="line"><span class="language-javascript">            toolbarIconTexts : &#123;</span></span><br><span class="line"><span class="language-javascript">                releaseIcon : <span class="string">&quot;&lt;span bgcolor=\&quot;gray\&quot;&gt;发布&lt;/span&gt;&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">                index : <span class="string">&quot;&lt;span bgcolor=\&quot;red\&quot;&gt;返回首页&lt;/span&gt;&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            &#125;,</span></span><br><span class="line"><span class="language-javascript"> </span></span><br><span class="line"><span class="language-javascript">            <span class="comment">/*给自定义按钮指定回调函数*/</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">toolbarHandlers</span>:&#123;</span></span><br><span class="line"><span class="language-javascript">                releaseIcon : <span class="keyword">function</span>(<span class="params">cm, icon, cursor, selection</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="comment">//表单提交</span></span></span><br><span class="line"><span class="language-javascript">                    mdEditorForm.<span class="property">method</span> = <span class="string">&quot;post&quot;</span>;</span></span><br><span class="line"><span class="language-javascript">                    mdEditorForm.<span class="property">action</span> = <span class="string">&quot;/article/addArticle&quot;</span>;<span class="comment">//提交至服务器的路径</span></span></span><br><span class="line"><span class="language-javascript">                    mdEditorForm.<span class="title function_">submit</span>();</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">                index : <span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">                    <span class="variable language_">window</span>.<span class="property">location</span>.<span class="property">href</span> = <span class="string">&#x27;/&#x27;</span>;</span></span><br><span class="line"><span class="language-javascript">                &#125;,</span></span><br><span class="line"><span class="language-javascript">            &#125;</span></span><br><span class="line"><span class="language-javascript">        &#125;);</span></span><br><span class="line"><span class="language-javascript">    &#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写Controller，进行跳转，以及保存文章</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/article&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ArticleController</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@GetMapping(&quot;/toEditor&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">toEditor</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;editor&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@PostMapping(&quot;/addArticle&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">addArticle</span><span class="params">(Article article)</span>&#123;</span><br><span class="line">        articleMapper.addArticle(article);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;editor&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="图片上传问题"><a href="#图片上传问题" class="headerlink" title="图片上传问题"></a>图片上传问题</h1><ol>
+<li><p>前端js中添加配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//图片上传</span></span><br><span class="line">imageUpload : <span class="literal">true</span>,</span><br><span class="line">imageFormats : [<span class="string">&quot;jpg&quot;</span>, <span class="string">&quot;jpeg&quot;</span>, <span class="string">&quot;gif&quot;</span>, <span class="string">&quot;png&quot;</span>, <span class="string">&quot;bmp&quot;</span>, <span class="string">&quot;webp&quot;</span>],</span><br><span class="line">imageUploadURL : <span class="string">&quot;/article/file/upload&quot;</span>, <span class="comment">// //这个是上传图片时的访问地址</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>后端请求，接收保存这个图片, 需要导入 FastJson 的依赖！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//博客图片上传问题</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/file/upload&quot;)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="keyword">public</span> JSONObject <span class="title function_">fileUpload</span><span class="params">(<span class="meta">@RequestParam(value = &quot;editormd-image-file&quot;, required = true)</span> MultipartFile file, HttpServletRequest request)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">    <span class="comment">//上传路径保存设置</span></span><br><span class="line"> </span><br><span class="line">    <span class="comment">//获得SpringBoot当前项目的路径：System.getProperty(&quot;user.dir&quot;)</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">path</span> <span class="operator">=</span> System.getProperty(<span class="string">&quot;user.dir&quot;</span>)+<span class="string">&quot;/upload/&quot;</span>;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//按照月份进行分类：</span></span><br><span class="line">    <span class="type">Calendar</span> <span class="variable">instance</span> <span class="operator">=</span> Calendar.getInstance();</span><br><span class="line">    <span class="type">String</span> <span class="variable">month</span> <span class="operator">=</span> (instance.get(Calendar.MONTH) + <span class="number">1</span>)+<span class="string">&quot;月&quot;</span>;</span><br><span class="line">    path = path+month;</span><br><span class="line"> </span><br><span class="line">    <span class="type">File</span> <span class="variable">realPath</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(path);</span><br><span class="line">    <span class="keyword">if</span> (!realPath.exists())&#123;</span><br><span class="line">        realPath.mkdir();</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//上传文件地址</span></span><br><span class="line">    System.out.println(<span class="string">&quot;上传文件保存地址：&quot;</span>+realPath);</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//解决文件名字问题：我们使用uuid;</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">filename</span> <span class="operator">=</span> <span class="string">&quot;ks-&quot;</span>+UUID.randomUUID().toString().replaceAll(<span class="string">&quot;-&quot;</span>, <span class="string">&quot;&quot;</span>);</span><br><span class="line">    <span class="comment">//通过CommonsMultipartFile的方法直接写文件（注意这个时候）</span></span><br><span class="line">    file.transferTo(<span class="keyword">new</span> <span class="title class_">File</span>(realPath +<span class="string">&quot;/&quot;</span>+ filename));</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//给editormd进行回调</span></span><br><span class="line">    <span class="type">JSONObject</span> <span class="variable">res</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JSONObject</span>();</span><br><span class="line">    res.put(<span class="string">&quot;url&quot;</span>,<span class="string">&quot;/upload/&quot;</span>+month+<span class="string">&quot;/&quot;</span>+ filename);</span><br><span class="line">    res.put(<span class="string">&quot;success&quot;</span>, <span class="number">1</span>);</span><br><span class="line">    res.put(<span class="string">&quot;message&quot;</span>, <span class="string">&quot;upload success!&quot;</span>);</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决文件回显显示的问题，设置虚拟目录映射！在我们自己拓展的MvcConfig中进行配置即可！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyMvcConfig</span> <span class="keyword">implements</span> <span class="title class_">WebMvcConfigurer</span> &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 文件保存在真实目录/upload/下，</span></span><br><span class="line">    <span class="comment">// 访问的时候使用虚路径/upload，比如文件名为1.png，就直接/upload/1.png就ok了。</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">addResourceHandlers</span><span class="params">(ResourceHandlerRegistry registry)</span> &#123;</span><br><span class="line">        registry.addResourceHandler(<span class="string">&quot;/upload/**&quot;</span>)</span><br><span class="line">            .addResourceLocations(<span class="string">&quot;file:&quot;</span>+System.getProperty(<span class="string">&quot;user.dir&quot;</span>)+<span class="string">&quot;/upload/&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="表情包问题"><a href="#表情包问题" class="headerlink" title="表情包问题"></a>表情包问题</h1><p>自己手动下载，emoji 表情包，放到图片路径下：</p>
+<p>修改editormd.js文件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Emoji graphics files url path</span></span><br><span class="line">editormd.<span class="property">emoji</span>     = &#123;</span><br><span class="line">    path  : <span class="string">&quot;../editormd/plugins/emoji-dialog/emoji/&quot;</span>,</span><br><span class="line">    ext   : <span class="string">&quot;.png&quot;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h1 id="文章展示"><a href="#文章展示" class="headerlink" title="文章展示"></a>文章展示</h1><ol>
+<li><p>Controller 中增加方法</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GetMapping(&quot;/&#123;id&#125;&quot;)</span></span><br><span class="line"><span class="keyword">public</span> String <span class="title function_">show</span><span class="params">(<span class="meta">@PathVariable(&quot;id&quot;)</span> <span class="type">int</span> id,Model model)</span>&#123;</span><br><span class="line">    <span class="type">Article</span> <span class="variable">article</span> <span class="operator">=</span> articleMapper.getArticleById(id);</span><br><span class="line">    model.addAttribute(<span class="string">&quot;article&quot;</span>,article);</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;article&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编写页面 article.html</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span> <span class="attr">xmlns:th</span>=<span class="string">&quot;http://www.thymeleaf.org&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;article.title&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--文章头部信息：标题，作者，最后更新日期，导航--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span> <span class="attr">style</span>=<span class="string">&quot;margin: auto 0&quot;</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;article.title&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    作者：<span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;float: left&quot;</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;article.author&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--文章主体内容--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;doc-content&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">style</span>=<span class="string">&quot;display:none;&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;markdown&quot;</span> <span class="attr">th:text</span>=<span class="string">&quot;$&#123;article.content&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">th:href</span>=<span class="string">&quot;@&#123;/editormd/css/editormd.preview.css&#125;&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/jquery.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/marked.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/prettify.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/raphael.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/underscore.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/sequence-diagram.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/flowchart.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/lib/jquery.flowchart.min.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">&quot;@&#123;/editormd/editormd.js&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">var</span> testEditor;</span></span><br><span class="line"><span class="language-javascript">    $(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">        testEditor = editormd.<span class="title function_">markdownToHTML</span>(<span class="string">&quot;doc-content&quot;</span>, &#123;<span class="comment">//注意：这里是上面DIV的id</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">htmlDecode</span>: <span class="string">&quot;style,script,iframe&quot;</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">emoji</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">taskList</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">tocm</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="language-javascript">            <span class="attr">tex</span>: <span class="literal">true</span>, <span class="comment">// 默认不解析</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">flowChart</span>: <span class="literal">true</span>, <span class="comment">// 默认不解析</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">sequenceDiagram</span>: <span class="literal">true</span>, <span class="comment">// 默认不解析</span></span></span><br><span class="line"><span class="language-javascript">            <span class="attr">codeFold</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">        &#125;);&#125;);</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>重启项目，访问进行测试！大功告成！</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/touxiang.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/touxiang.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">LuckyTiger</div><div class="post-copyright__author_desc">代码如诗，细节成就极致，逻辑成就完美✨</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="http://luckytiger12138.github.io/2020/08/07/Springboot-15-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('http://luckytiger12138.github.io/2020/08/07/Springboot-15-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/')">Springboot-15 富文本编辑器</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/null" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="/null" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/null" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="http://luckytiger12138.github.io/2020/08/07/Springboot-15-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=Springboot-15 富文本编辑器&amp;url=http://luckytiger12138.github.io/2020/08/07/Springboot-15-%E5%AF%8C%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/&amp;pic=https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101346217.webp" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://luckytiger12138.github.io" target="_blank">LuckyTiger</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/%E6%A1%86%E6%9E%B6/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>框架<span class="tagsPageCount">42</span></a><a class="post-meta__box__tags" href="/tags/springboot/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>springboot<span class="tagsPageCount">18</span></a><a class="post-meta__box__tags" href="/tags/web/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>web<span class="tagsPageCount">6</span></a><a class="post-meta__box__tags" href="/tags/%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>文本编辑器<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101346217.webp?_r_=e8f751d2-2717-e60d-19cc-c7a97c66d448" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/07/Springboot-14-%E5%BC%82%E6%AD%A5%E3%80%81%E5%AE%9A%E6%97%B6%E3%80%81%E9%82%AE%E4%BB%B6%E4%BB%BB%E5%8A%A1/"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341304.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Springboot-14 异步、定时、邮件任务</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/07/Springboot-16-Dubbo%E5%92%8CZookeeper%E9%9B%86%E6%88%90/"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341306.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Springboot-16 Dubbo和Zookeeper集成</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/2020/08/06/Springboot-09-Web%E5%BC%80%E5%8F%91%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E5%A4%84%E7%90%86/" title="Springboot-09 Web开发静态资源处理"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341299.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-08-06</div><div class="title">Springboot-09 Web开发静态资源处理</div></div></a></div><div><a href="/2020/08/07/Springboot-10-Thymeleaf%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E/" title="Springboot-10 Thymeleaf模板引擎"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341300.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-08-07</div><div class="title">Springboot-10 Thymeleaf模板引擎</div></div></a></div><div><a href="/2020/08/07/Springboot-12-%E9%A1%B5%E9%9D%A2%E5%9B%BD%E9%99%85%E5%8C%96/" title="Springboot-12 页面国际化"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341302.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-08-07</div><div class="title">Springboot-12 页面国际化</div></div></a></div><div><a href="/2020/08/07/Springboot-11-MVC%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86/" title="Springboot-11 MVC自动配置原理"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341301.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-08-07</div><div class="title">Springboot-11 MVC自动配置原理</div></div></a></div><div><a href="/2020/08/07/Springboot-13-%E9%9B%86%E6%88%90Swagger%E7%BB%88%E6%9E%81%E7%89%88/" title="Springboot-13 集成Swagger终极版"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341303.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-08-07</div><div class="title">Springboot-13 集成Swagger终极版</div></div></a></div><div><a href="/2020/08/06/Springboot-01-%E5%8E%9F%E7%90%86%E5%88%9D%E6%8E%A2/" title="Springboot-01 原理初探"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311102341309.png" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2020-08-06</div><div class="title">Springboot-01 原理初探</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/touxiang.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2021/06/20/1329511eed440.png" ait="status"/></div></div><div class="author-info__description">这有关于产品、设计、开发相关的问题和看法，还有文章翻译和分享。 相信你可以在这里找到对你有用的知识和教程。</div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">LuckyTiger</h1><div class="author-info__desc">代码如诗，细节成就极致，逻辑成就完美✨</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/LuckyTiger12138" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来看我的博客鸭~</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Editor-md"><span class="toc-number">1.</span> <span class="toc-text">Editor.md</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">基础工程搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">2.1.</span> <span class="toc-text">数据库设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA"><span class="toc-number">2.2.</span> <span class="toc-text">基础项目搭建</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%BC%96%E8%BE%91%E6%95%B4%E5%90%88%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">文章编辑整合（重点）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">图片上传问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A1%A8%E6%83%85%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">表情包问题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E5%B1%95%E7%A4%BA"><span class="toc-number">6.</span> <span class="toc-text">文章展示</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/12/23/sql/" title="sql"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101346217.webp?_r_=e8f751d2-2717-e60d-19cc-c7a97c66d448" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="sql"/></a><div class="content"><a class="title" href="/2023/12/23/sql/" title="sql">sql</a><time datetime="2023-12-23T01:46:57.000Z" title="发表于 2023-12-23 09:46:57">2023-12-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/28/wsl%E6%8A%A5%E9%94%99/" title="Echarts-树形关系图"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311122010771.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Echarts-树形关系图"/></a><div class="content"><a class="title" href="/2023/11/28/wsl%E6%8A%A5%E9%94%99/" title="Echarts-树形关系图">Echarts-树形关系图</a><time datetime="2023-11-28T05:35:42.000Z" title="发表于 2023-11-28 13:35:42">2023-11-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/11/12/idea/" title="idea"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101346217.webp?_r_=a85708b2-0401-d2f1-b6fe-632b378f8703" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="idea"/></a><div class="content"><a class="title" href="/2023/11/12/idea/" title="idea">idea</a><time datetime="2023-11-12T09:12:52.000Z" title="发表于 2023-11-12 17:12:52">2023-11-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/23/IntelliJ-IDEA-%E5%BC%80%E5%90%AF%E5%BE%88%E6%85%A2%EF%BC%8C%E8%BF%90%E8%A1%8C%E4%B8%8D%E6%B5%81%E7%95%85%EF%BC%8C%E5%A4%A7%E9%A1%B9%E7%9B%AE%E5%8D%A1%E9%A1%BF%EF%BC%9F%E4%B8%80%E6%8B%9B%E9%85%8D%E7%BD%AE%E8%A7%A3%E5%86%B3/" title="IntelliJ IDEA 开启很慢，运行不流畅，大项目卡顿？一招配置解决!"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311121740062.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="IntelliJ IDEA 开启很慢，运行不流畅，大项目卡顿？一招配置解决!"/></a><div class="content"><a class="title" href="/2021/08/23/IntelliJ-IDEA-%E5%BC%80%E5%90%AF%E5%BE%88%E6%85%A2%EF%BC%8C%E8%BF%90%E8%A1%8C%E4%B8%8D%E6%B5%81%E7%95%85%EF%BC%8C%E5%A4%A7%E9%A1%B9%E7%9B%AE%E5%8D%A1%E9%A1%BF%EF%BC%9F%E4%B8%80%E6%8B%9B%E9%85%8D%E7%BD%AE%E8%A7%A3%E5%86%B3/" title="IntelliJ IDEA 开启很慢，运行不流畅，大项目卡顿？一招配置解决!">IntelliJ IDEA 开启很慢，运行不流畅，大项目卡顿？一招配置解决!</a><time datetime="2021-08-23T05:20:03.000Z" title="发表于 2021-08-23 13:20:03">2021-08-23</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/08/22/Java-Tree-%E9%80%92%E5%BD%92/" title="Java-Tree多种操作(递归)"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311121951980.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java-Tree多种操作(递归)"/></a><div class="content"><a class="title" href="/2021/08/22/Java-Tree-%E9%80%92%E5%BD%92/" title="Java-Tree多种操作(递归)">Java-Tree多种操作(递归)</a><time datetime="2021-08-22T02:59:39.000Z" title="发表于 2021-08-22 10:59:39">2021-08-22</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:1095637365@qq.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/touxiang.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/LuckyTiger12138" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a></div><div id="workboard"><img class="workSituationImg boardsign" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101238185.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"/><div id="runtimeTextTip"></div></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="友链文章" href="/fcircle/">友链文章</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2020 - 2024 By <a class="footer-bar-link" href="/" title="LuckyTiger" target="_blank">LuckyTiger</a></div></div><div id="footer-type-tips"></div><div class="js-pjax"><script>function subtitleType () {
+  fetch('https://v1.hitokoto.cn')
+    .then(response => response.json())
+    .then(data => {
+      if (true) {
+        const from = '出自 ' + data.from
+        const sub = []
+        sub.unshift(data.hitokoto, from)
+        window.typed = new Typed('#footer-type-tips', {
+          strings: sub,
+          startDelay: 300,
+          typeSpeed: 150,
+          loop: true,
+          backSpeed: 50,
+        })
+      } else {
+        document.getElementById('footer-type-tips').innerHTML = data.hitokoto
+      }
+    })
+}
+
+if (true) {
+  if (typeof Typed === 'function') {
+    subtitleType()
+  } else {
+    getScript('https://cdn.cbd.int/typed.js@2.0.15/dist/typed.umd.js').then(subtitleType)
+  }
+} else {
+  subtitleType()
+}
+</script></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">54</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">64</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">8</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" href="https://luckytiger12138.github.io/HomePageLusion.github.io/" title="个人中心"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/favicon.ico" alt="个人中心"/><span class="back-menu-item-text">个人中心</span></a></div></div><div class="back-menu-list-group"><div class="back-menu-list-title">项目</div><div class="back-menu-list"><a class="back-menu-item" href="https://luckytiger12138.github.io/HomePageLusion.github.io/" title="个人中心"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://image.anheyu.com/favicon.ico" alt="个人中心"/><span class="back-menu-item-text">个人中心</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="https://gpt.luckytiger12138.top" title="Chatgpt"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101640793.png" alt="Chatgpt"/><span class="back-menu-item-text">Chatgpt</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/fcircle/"><i class="anzhiyufont anzhiyu-icon-artstation faa-tada" style="font-size: 0.9em;"></i><span> 朋友圈</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/album/"><i class="anzhiyufont anzhiyu-icon-images faa-tada" style="font-size: 0.9em;"></i><span> 相册集</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/AOP/" style="font-size: 0.88rem;">AOP<sup>1</sup></a><a href="/tags/Ajax/" style="font-size: 0.88rem;">Ajax<sup>1</sup></a><a href="/tags/DI/" style="font-size: 0.88rem;">DI<sup>1</sup></a><a href="/tags/Echarts/" style="font-size: 0.88rem;">Echarts<sup>2</sup></a><a href="/tags/JDBC/" style="font-size: 0.88rem;">JDBC<sup>1</sup></a><a href="/tags/JSON/" style="font-size: 0.88rem;">JSON<sup>1</sup></a><a href="/tags/Java/" style="font-size: 0.88rem;">Java<sup>1</sup></a><a href="/tags/JavaWeb/" style="font-size: 0.88rem;">JavaWeb<sup>1</sup></a><a href="/tags/MyBatis/" style="font-size: 0.88rem;">MyBatis<sup>10</sup></a><a href="/tags/MySQL/" style="font-size: 0.88rem;">MySQL<sup>4</sup></a><a href="/tags/MybatisPlus/" style="font-size: 0.88rem;">MybatisPlus<sup>1</sup></a><a href="/tags/Ngrok/" style="font-size: 0.88rem;">Ngrok<sup>1</sup></a><a href="/tags/RestFul/" style="font-size: 0.88rem;">RestFul<sup>1</sup></a><a href="/tags/Spring/" style="font-size: 0.88rem;">Spring<sup>8</sup></a><a href="/tags/SpringMVC/" style="font-size: 0.88rem;">SpringMVC<sup>9</sup></a><a href="/tags/Tree/" style="font-size: 0.88rem;">Tree<sup>1</sup></a><a href="/tags/c3p0/" style="font-size: 0.88rem;">c3p0<sup>1</sup></a><a href="/tags/dbcp/" style="font-size: 0.88rem;">dbcp<sup>1</sup></a><a href="/tags/idea/" style="font-size: 0.88rem;">idea<sup>1</sup></a><a href="/tags/%E4%B8%80%E5%AF%B9%E5%A4%9A/" style="font-size: 0.88rem;">一对多<sup>1</sup></a><a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 0.88rem;">事务<sup>1</sup></a><a href="/tags/%E4%BC%98%E5%8C%96/" style="font-size: 0.88rem;">优化<sup>1</sup></a><a href="/tags/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.88rem;">关系型数据库<sup>3</sup></a><a href="/tags/%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/" style="font-size: 0.88rem;">内网穿透<sup>1</sup></a><a href="/tags/%E5%88%86%E9%A1%B5/" style="font-size: 0.88rem;">分页<sup>1</sup></a><a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 0.88rem;">前端<sup>2</sup></a><a href="/tags/%E5%8A%A8%E6%80%81SQL/" style="font-size: 0.88rem;">动态SQL<sup>1</sup></a><a href="/tags/%E5%A4%9A%E5%AF%B9%E4%B8%80/" style="font-size: 0.88rem;">多对一<sup>1</sup></a><a href="/tags/%E5%AE%B9%E5%99%A8/" style="font-size: 0.88rem;">容器<sup>5</sup></a><a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 0.88rem;">并发<sup>1</sup></a><a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/" style="font-size: 0.88rem;">拦截器<sup>1</sup></a><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 0.88rem;">数据库<sup>18</sup></a><a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" style="font-size: 0.88rem;">文件上传<sup>1</sup></a><a href="/tags/%E6%98%A0%E5%B0%84/" style="font-size: 0.88rem;">映射<sup>1</sup></a><a href="/tags/%E6%A1%86%E6%9E%B6/" style="font-size: 0.88rem;">框架<sup>42</sup></a><a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 0.88rem;">注解<sup>2</sup></a><a href="/tags/%E7%BC%93%E5%AD%98/" style="font-size: 0.88rem;">缓存<sup>1</sup></a><a href="/tags/%E8%A7%A3%E5%86%B3%E9%97%AE%E9%A2%98/" style="font-size: 0.88rem;">解决问题<sup>1</sup></a><a href="/tags/%E9%80%92%E5%BD%92/" style="font-size: 0.88rem;">递归<sup>1</sup></a><a href="/tags/%E9%9D%A2%E5%90%91%E5%88%87%E9%9D%A2%E7%BC%96%E7%A8%8B/" style="font-size: 0.88rem;">面向切面编程<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random"></meting-js></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.20/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.4/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("04/01/2021 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2020 By 安知鱼 V1.6.9",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 LuckyTiger 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("04/01/2021 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      if (img != null) {
+        img.src = "https://cdn.jsdelivr.net/gh/LuckyTiger12138/images//img/202311101238805.svg";
+        img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+        img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+      }
+
+      currentTimeHtml = `本站居然运行了 ${dnum} 天<span id='runtime'> ${hnum} 小时 ${mnum} 分 ${snum} 秒 </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+    }
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://cdn.cbd.int/algoliasearch@4.18.0/dist/algoliasearch-lite.umd.js"></script><script src="https://cdn.cbd.int/instantsearch.js@4.56.5/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>(() => {
+  const initWaline = () => {
+    const waline = Waline.init(Object.assign({
+      el: '#waline-wrap',
+      serverURL: 'lucky-tiger12138-waline.vercel.app',
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      path: window.location.pathname,
+      comment: false,
+    }, null))
+  }
+
+  const loadWaline = async () => {
+    if (typeof Waline === 'object') initWaline()
+    else {
+      await getCSS('https://cdn.cbd.int/@waline/client@2.15.5/dist/waline.css')
+      await getScript('https://cdn.cbd.int/@waline/client@2.15.5/dist/waline.js')
+      initWaline()
+    }
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = content => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'></a>`
+        }
+
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <div class='name'><span>${array[i].nick} / </span><time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div></div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom.innerHTML= result
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const getComment = async () => {
+    try {
+      const res = await fetch('lucky-tiger12138-waline.vercel.app/api/comment?type=recent&count=6', { method: 'GET' })
+      const result = await res.json()
+      const walineArray = result.data.map(e => {
+        return {
+          'content': changeContent(e.comment),
+          'avatar': e.avatar,
+          'nick': e.nick,
+          'url': e.url + '#' + e.objectId,
+          'date': e.time || e.insertedAt
+        }
+      })
+      saveToLocal.set('waline-newest-comments', JSON.stringify(walineArray), 10/(60*24))
+      generateHtml(walineArray)
+    } catch (err) {
+      console.error(err)
+      const $dom = document.querySelector('#card-newest-comments .aside-list')
+      $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+    }
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('waline-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script>var visitorMail = "240084694@qq.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
