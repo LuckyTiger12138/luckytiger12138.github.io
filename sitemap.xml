@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://luckytiger12138.github.io/2024/08/13/linux%E4%B8%8B%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2nginx/</loc>
+    
+    <lastmod>2024-08-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://luckytiger12138.github.io/2023/11/28/wsl%E6%8A%A5%E9%94%99/</loc>
     
     <lastmod>2024-06-06</lastmod>
