@@ -1,3 +1,4 @@
+http://luckytiger12138.github.io/2024/08/14/mkcert%E8%87%AA%E7%AD%BESSL%E8%AF%81%E4%B9%A6/
 http://luckytiger12138.github.io/2024/08/13/shell%E8%84%9A%E6%9C%AC%E5%90%AF%E5%8A%A8jar/
 http://luckytiger12138.github.io/2024/08/13/linux%E4%B8%8B%E4%BD%BF%E7%94%A8Docker%E9%83%A8%E7%BD%B2nginx/
 http://luckytiger12138.github.io/2024/05/29/MybatisPlus-%E5%B8%B8%E7%94%A8%E5%86%99%E6%B3%95/
